@@ -2,7 +2,7 @@
 
 Copy utility that overwrites existing smaller files with larger files, and non-existing files same as a normal copy
 
-Use: CopyLarger "<source folder>" "<target folder>"				
+Use: `CopyLarger "source folder" "target folder"`
 
 CopyLarger does not check if the target folder has enough room, nor if the file content differs when the sizes are equal.
 
