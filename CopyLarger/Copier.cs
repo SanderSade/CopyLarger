@@ -10,6 +10,8 @@ namespace CopyLarger
 		private readonly ArgsDto _options;
 		private readonly CopyResult _result;
 		private readonly List<FileInfo> _sourceFiles;
+		private readonly string _outFolder;
+		private readonly string _inputFolder;
 
 
 		internal Copier(ArgsDto options)
@@ -17,6 +19,8 @@ namespace CopyLarger
 			_options = options;
 			_result = new CopyResult();
 			_sourceFiles = new List<FileInfo>();
+			_outFolder = _options.Output.FullName + "\\";
+			_inputFolder = _options.Input.FullName;
 		}
 
 
@@ -49,7 +53,7 @@ namespace CopyLarger
 		private void CopyFile(FileInfo sourceFile)
 		{
 			//this is not a good way to do this, but I don't have a need for better replace atm
-			var targetFile = sourceFile.FullName.Replace(_options.Input.FullName, _options.Output.FullName);
+			var targetFile = sourceFile.FullName.Replace(_inputFolder, _outFolder);
 
 			bool isOverwrite = false;
 
@@ -80,14 +84,7 @@ namespace CopyLarger
 
 		private void ProcessFolder(DirectoryInfo directoryInfo)
 		{
-			var folders = directoryInfo.EnumerateDirectories();
-
-			foreach (var folder in folders)
-			{
-				ProcessFolder(folder);
-			}
-
-			var files = directoryInfo.GetFiles();
+			var files = directoryInfo.GetFiles("*", SearchOption.AllDirectories);
 			_sourceFiles.AddRange(files);
 		}
 	}
