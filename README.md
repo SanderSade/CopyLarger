@@ -1,6 +1,6 @@
 # CopyLarger
 
-Copy utility that overwrites existing smaller files with larger files, and non-existing files same as a normal copy
+Copy utility that overwrites existing smaller files with larger files, and copies the non-existing files same as a normal copy
 
 Use: `CopyLarger "source folder" "target folder"`
 
